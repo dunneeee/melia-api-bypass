@@ -7,14 +7,19 @@ export default defineConfig({
     lib: {
       entry: "src/index.ts",
       name: "MeliaApi",
-      formats: ["iife"],
+      formats: ["es", "cjs", "iife"],
       fileName(format, entryName) {
-        return `${entryName}.${format}.js`;
+        const extensions: Record<string, string> = {
+          es: "mjs",
+          cjs: "cjs",
+          iife: "iife.js",
+        };
+        return `${entryName}.${extensions[format]}`;
       },
     },
     rollupOptions: {
       output: {
-        extend: true,
+        extend: false,
         globals: {},
       },
     },

@@ -2,10 +2,27 @@
   "name": "melia-api-bypass",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "browser": "dist/index.iife.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "browser": "./dist/index.iife.js",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build"
+    "build": "tsc && vite build && npm run build:types",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:browser": "vite build --mode browser",
+    "build:module": "vite build --mode module"
   },
   "keywords": [],
   "author": "",
