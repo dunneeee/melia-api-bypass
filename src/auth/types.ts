@@ -1,4 +1,4 @@
-import { SubmittedDataDto } from "../modules/module-type";
+import { SubmittedDataDto } from "../modules/interfaces/auth-module";
 
 export type RegisterUserFormDto = Partial<
   Omit<
@@ -21,4 +21,10 @@ export interface SentOtpResult {
   hash: string;
   destination: string;
   sendType: "EMAIL";
+}
+
+export interface OperationData {
+  hash: string;
+  destination: string;
+  otp: string;
 }

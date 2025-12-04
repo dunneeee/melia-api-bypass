@@ -1,9 +1,9 @@
 import { TypeSafeEventEmitter } from "../listeners/event-listener";
-import { InferModuleType } from "./module-type";
+import { InferModuleType } from "./interfaces/module-type";
 import {
   WebpackRequireType as WebpackRequireFc,
   WebpackRequirePrettier,
-} from "./types";
+} from "./interfaces/webpack-require";
 
 export interface WebpackEventMap {
   catchRequire: {
@@ -33,6 +33,14 @@ export class WebpackRequire extends TypeSafeEventEmitter<WebpackEventMap> {
 
   public static get ConstantModule(): InferModuleType<49226> {
     return WebpackRequire.Instance.RequireFunction(49226);
+  }
+
+  public static get AuthActionModule(): InferModuleType<6475> {
+    return WebpackRequire.Instance.RequireFunction(6475);
+  }
+
+  public static get RouterModule(): InferModuleType<5795> {
+    return WebpackRequire.Instance.RequireFunction(5795);
   }
 
   public static load(): void {
@@ -103,5 +111,24 @@ export class WebpackRequire extends TypeSafeEventEmitter<WebpackEventMap> {
       throw new Error("Webpack require function has not been captured yet.");
     }
     return this.require;
+  }
+
+  public findModuleByKeyword(keyword: string): any[] {
+    const require = this.RequireFunction;
+    const modules: any[] = [];
+    for (const moduleId in require.moduleDefinitions) {
+      const moduleFactory = require.moduleDefinitions[moduleId];
+      const factoryString = moduleFactory.toString();
+      if (factoryString.includes(keyword)) {
+        const module = require(moduleId);
+        modules.push({
+          id: moduleId,
+          module,
+          preview: factoryString.slice(0, 200) + "...",
+        });
+      }
+    }
+
+    return modules;
   }
 }

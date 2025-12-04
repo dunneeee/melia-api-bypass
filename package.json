@@ -15,5 +15,8 @@
     "@types/node": "^24.10.1",
     "typescript": "^5.9.3",
     "vite": "^7.2.6"
+  },
+  "dependencies": {
+    "country-codes-list": "^2.0.0"
   }
 }

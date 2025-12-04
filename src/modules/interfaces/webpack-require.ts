@@ -1,4 +1,4 @@
-import { AuthModule, InferModuleType } from "./module-type";
+import { InferModuleType } from "./module-type";
 
 export interface WebpackRequireType {
   /**
