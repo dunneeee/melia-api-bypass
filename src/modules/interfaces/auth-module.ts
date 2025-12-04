@@ -29,6 +29,10 @@ export interface RegisterFormDto {
   verificationCode: string;
   tokenCaptcha: string;
   countryCaptcha: string;
+  memberReferred?: {
+    refererMemberId?: string;
+    loyaltyToken: string;
+  };
 }
 
 export type RegisterUserResult = Either2<

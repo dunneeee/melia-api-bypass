@@ -15,6 +15,7 @@ export type RegisterUserFormDto = Partial<
   lastName: string;
   country: string;
   email: string;
+  loyaltyToken?: string;
 };
 
 export interface SentOtpResult {

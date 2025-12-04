@@ -67,6 +67,13 @@ export class AuthService {
       },
     };
 
+    if (form.loyaltyToken) {
+      payload.memberReferred = {
+        loyaltyToken: form.loyaltyToken,
+        refererMemberId: undefined,
+      };
+    }
+
     const { value } = await WebpackRequire.AuthModule.Z.registerUser(payload);
 
     if (value.kind === "left")
