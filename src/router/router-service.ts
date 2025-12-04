@@ -1,5 +1,7 @@
 import { RouterModule } from "../modules/interfaces/router-module";
 import { WebpackRequire } from "../modules/webpack-require";
+import { UITrackerEventEnum } from "../ui";
+import { Track } from "../ui/decorators";
 
 export class RouterService {
   public static readonly EVENT_ROUTER_CHANGE_COMPLETE = "routeChangeComplete";
@@ -8,6 +10,7 @@ export class RouterService {
     return WebpackRequire.Instance.RequireFunction(5795);
   }
 
+  @Track(UITrackerEventEnum.ROUTER_SERVICE)
   async navigateAndWait(url: string, replace: boolean = false): Promise<void> {
     return new Promise((resolve, reject) => {
       RouterService.Router.events.on(

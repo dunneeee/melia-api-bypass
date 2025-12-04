@@ -104,6 +104,7 @@ export class AuthService {
     return true;
   }
 
+  @Track(UITrackerEventEnum.AUTH_SERVICE)
   async logoutUser() {
     const module = WebpackRequire.AuthActionModule;
     if (!module) throw new Error("AuthLogoutModule not found");

@@ -1,6 +1,7 @@
 export enum UITrackerEventEnum {
   CAPTCHA = "captcha",
   AUTH_SERVICE = "auth_service",
+  ROUTER_SERVICE = "router_service",
   ALL = "all",
 }
 
